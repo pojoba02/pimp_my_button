@@ -16,7 +16,7 @@ class PimpedButton extends StatefulWidget {
   const PimpedButton({
     Key key,
     @required this.particle,
-    this.duration = const Duration(milliseconds: 500),
+    this.duration = const Duration(milliseconds: 10000),
     @required this.pimpedWidgetBuilder,
   }) : super(key: key);
 
@@ -159,14 +159,14 @@ class PoppingCircle extends Particle {
             ..strokeWidth = 5.0 - progress * 2);
     } else {
       CircleMirror(
-        numberOfParticles: 4,
+        numberOfParticles: 24,
         child: AnimatedPositionedParticle(
-          begin: Offset(0.0, 5.0),
+          begin: Offset(0.0, 4.0),
           end: Offset(0.0, 15.0),
           child: FadingRect(
             color: color,
             height: 7.0,
-            width: 2.0,
+            width: 3.0,
           )
         ),
         initialRotation: pi / 4,
@@ -181,27 +181,27 @@ class Firework extends Particle {
   void paint(Canvas canvas, Size size, double progress, int seed) {
     FourRandomSlotParticle(children: [
       IntervalParticle(
-        interval: Interval(0.0, 0.5, curve: Curves.easeIn),
+        interval: Interval(0.0, 0.7, curve: Curves.easeIn),
         child: PoppingCircle(
-          color: Colors.deepOrangeAccent,
+          color: Colors.redAccent,
         ),
       ),
       IntervalParticle(
         interval: Interval(0.2, 0.5, curve: Curves.easeIn),
         child: PoppingCircle(
-          color: Colors.green,
+          color: Colors.lightGreenAccent,
         ),
       ),
       IntervalParticle(
         interval: Interval(0.4, 0.8, curve: Curves.easeIn),
         child: PoppingCircle(
-          color: Colors.indigo,
+          color: Colors.purpleAccent,
         ),
       ),
       IntervalParticle(
         interval: Interval(0.5, 1.0, curve: Curves.easeIn),
         child: PoppingCircle(
-          color: Colors.teal,
+          color: Colors.pinkAccent,
         ),
       ),
     ]).paint(canvas, size, progress, seed);
