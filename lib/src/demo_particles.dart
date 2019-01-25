@@ -6,11 +6,11 @@ import 'package:pimp_my_button/src/pimp_my_button.dart';
 Color intToColor(int col) {
   col = col % 5;
   if (col == 0) return Colors.red;
-  if (col == 1) return Colors.green;
-  if (col == 2) return Colors.orange;
-  if (col == 3) return Colors.blue;
-  if (col == 4) return Colors.pink;
-  if (col == 5) return Colors.brown;
+  if (col == 1) return Colors.lightGreenAccent;
+  if (col == 2) return Colors.deepPurpleAccent;
+  if (col == 3) return Colors.purpleAccent;
+  if (col == 4) return Colors.pinkAccent;
+  if (col == 5) return Colors.greenAccent;
   return Colors.black;
 }
 
@@ -26,7 +26,7 @@ class DemoParticle extends Particle {
           child: AnimatedPositionedParticle(
             begin: Offset(0.0, 20.0),
             end: Offset(0.0, 60.0),
-            child: FadingRect(width: 5.0, height: 15.0, color: Colors.pink),
+            child: FadingRect(width: 5.0, height: 15.0, color: Colors.pinkAccent),
           ),
           initialRotation: -pi / randomMirrorOffset),
       CircleMirror.builder(
@@ -40,7 +40,7 @@ class DemoParticle extends Particle {
                       baseSize: 6.0 + random.nextDouble() * 4.0,
                       heightToBaseFactor: 1.0 + random.nextDouble(),
                       variation: random.nextDouble(),
-                      color: Colors.green),
+                      color: Colors.lightGreenAccent),
                 ),
                 interval: Interval(
                   0.0,
@@ -56,38 +56,38 @@ class RectangleDemoParticle extends Particle {
   @override
   void paint(Canvas canvas, Size size, progress, seed) {
     Random random = Random(seed);
-    int randomMirrorOffset = random.nextInt(8) + 1;
+    int randomMirrorOffset = random.nextInt(10) + 1;
     CompositeParticle(children: [
       Firework(),
       RectangleMirror.builder(
-          numberOfParticles: 13,
+          numberOfParticles: 27,
           particleBuilder: (int) {
             return AnimatedPositionedParticle(
-              begin: Offset(0.0, -10.0),
-              end: Offset(0.0, -60.0),
-              child: FadingRect(width: 5.0, height: 15.0, color: intToColor(int)),
+              begin: Offset(0.0, -8.0),
+              end: Offset(0.0, -80.0),
+              child: FadingRect(width: 6.0, height: 20.0, color: intToColor(int)),
             );
           },
           initialDistance: -pi / randomMirrorOffset),
       CircleMirror.builder(
-          numberOfParticles: 6,
+          numberOfParticles: 27,
           particleBuilder: (index) {
             return IntervalParticle(
                 child: AnimatedPositionedParticle(
-                  begin: Offset(0.0, 30.0),
-                  end: Offset(0.0, 50.0 + (7.5 - 15 * random.nextDouble())),
+                  begin: Offset(0.0, -8.0),
+                  end: Offset(0.0, 80.0 + (7.5 - 15 * random.nextDouble())),
                   child: FadingTriangle(
-                      baseSize: 6.0 + random.nextDouble() * 4.0,
-                      heightToBaseFactor: 1.0 + random.nextDouble(),
+                      baseSize: 70.0 + random.nextDouble() * 15.0,
+                      heightToBaseFactor: 0.5 + random.nextDouble(),
                       variation: random.nextDouble(),
-                      color: Colors.green),
+                      color: Colors.purpleAccent),
                 ),
                 interval: Interval(
                   0.0,
-                  0.8,
+                  0.80,
                 ));
           },
-          initialRotation: -pi / randomMirrorOffset + 8),
+          initialRotation: -pi / randomMirrorOffset + 12),
     ]).paint(canvas, size, progress, seed);
   }
 }
